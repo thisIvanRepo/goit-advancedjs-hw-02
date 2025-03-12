@@ -1,11 +1,13 @@
-import flatpickr from "flatpickr";
-import iziToast from "izitoast";
-import { refs } from "./refs.js"
+import flatpickr from 'flatpickr';
+import iziToast from 'izitoast';
+import { refs } from './refs.js';
+
+const { input, days, hours, minutes, seconds, btnStart } = refs;
 
 let userSelectedDate = null;
 let interval = null;
 
-flatpickr(refs.input,{
+flatpickr(input, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -14,38 +16,32 @@ flatpickr(refs.input,{
     const selectDate = selectedDates[0];
 
     if (selectDate < new Date()) {
-
       iziToast.error({
         message: 'Please choose a date in the future',
-        position: 'topRight'
+        position: 'topRight',
       });
 
-      refs.btnStart.setAttribute('disabled', 'true');
+      btnStart.setAttribute('disabled', 'true');
     } else {
       userSelectedDate = selectDate;
-      refs.btnStart.removeAttribute('disabled');
+      btnStart.removeAttribute('disabled');
     }
   },
 });
 
-refs.btnStart.addEventListener('click', () => {
+btnStart.addEventListener('click', () => {
   start();
 });
 
-
-
 function start() {
-  const { input, days, hours, minutes, seconds } = refs;
-
   interval = setInterval(() => {
     const diff = userSelectedDate - Date.now();
-    refs.btnStart.setAttribute('disabled', '');
+    btnStart.setAttribute('disabled', '');
     input.setAttribute('disabled', '');
-
 
     if (diff < 0) {
       input.removeAttribute('disabled');
-      refs.btnStart.removeAttribute('disabled');
+      btnStart.removeAttribute('disabled');
 
       stop();
       return;
@@ -57,8 +53,8 @@ function start() {
     hours.textContent = pad(timeComponent.hours);
     minutes.textContent = pad(timeComponent.minutes);
     seconds.textContent = pad(timeComponent.seconds);
-  }, 1000)
-};
+  }, 1000);
+}
 
 function stop() {
   clearInterval(interval);
@@ -67,7 +63,7 @@ function stop() {
   hours.textContent = '00';
   minutes.textContent = '00';
   seconds.textContent = '00';
-};
+}
 
 function pad(value) {
   return String(value).padStart(2, '0');

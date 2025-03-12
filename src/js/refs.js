@@ -5,6 +5,6 @@ const refs = {
   minutes: document.querySelector('[data-minutes]'),
   seconds: document.querySelector('[data-seconds]'),
   btnStart: document.querySelector('[data-start]'),
-}
+};
 
 export { refs };
