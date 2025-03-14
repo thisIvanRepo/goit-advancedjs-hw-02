@@ -1,4 +1,4 @@
-const refs = {
+const refsTimer = {
   input: document.querySelector('input[type="text"]'),
   days: document.querySelector('[data-days]'),
   hours: document.querySelector('[data-hours]'),
@@ -7,4 +7,9 @@ const refs = {
   btnStart: document.querySelector('[data-start]'),
 };
 
-export { refs };
+const refsSnackbar = {
+  form: document.querySelector('.form'),
+  delay: document.querySelector("[name='delay']"),
+};
+
+export { refsTimer, refsSnackbar };

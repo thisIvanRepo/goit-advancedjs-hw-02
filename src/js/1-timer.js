@@ -1,8 +1,8 @@
 import flatpickr from 'flatpickr';
 import iziToast from 'izitoast';
-import { refs } from './refs.js';
+import { refsTimer } from './refs.js';
 
-const { input, days, hours, minutes, seconds, btnStart } = refs;
+const { input, days, hours, minutes, seconds, btnStart } = refsTimer;
 
 let userSelectedDate = null;
 let interval = null;
